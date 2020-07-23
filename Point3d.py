@@ -16,8 +16,9 @@ class Point3D():
             return False
 
     def distanse_to_zero(self):
-        kat = (self.coord[0]**2 + self.coord[1]**2)**0.5
-        return (kat**2+self.coord[2]**2)**0.5
+        if isinstance(self, Point3D):
+            kat = (self.coord[0]**2 + self.coord[1]**2)**0.5
+            return (kat**2+self.coord[2]**2)**0.5
     #3
     def __gt__(self, other):
         if self.distanse_to_zero() > other.distanse_to_zero():
@@ -27,20 +28,22 @@ class Point3D():
 
     #4
     def __lt__(self, other):
-        if self.distanse_to_zero() < other.distanse_to_zero():
-            return True
-        else:
-            return False
+        if isinstance(other, Point3D):
+            if self.distanse_to_zero() < other.distanse_to_zero():
+                return True
+            else:
+                return False
     #5
     def __len__(self):
         return int(self.distanse_to_zero())
 
     #6
     def __le__(self, other):
-        if self.distanse_to_zero() <= other.distanse_to_zero():
-            return True
-        else:
-            return False
+        if isinstance(other, Point3D):
+            if self.distanse_to_zero() <= other.distanse_to_zero():
+                return True
+            else:
+                return False
 
     #7
     def __ge__(self, other):
